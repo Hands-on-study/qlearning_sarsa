@@ -58,13 +58,13 @@ agent가 초록색 triangle을 만나면 reward -100 을, 파란색 원을 만�
 
 ## Q1.
 q_learning 폴더의 main_q를 debugging 해보면서 "?" 를 정답으로 채우시오.  
-주의! state를 input으로 줄거라면 반드시 str(state)로 해야하며, environmnet.py에는 빈칸없습니다.
+주의! state를 input으로 줄거라면 반드시 str(state)로 해야하며, environment.py에는 빈칸없습니다.
 
 
 
 ## Q2.
 sarsa 폴더의 main_s를 debugging 해보면서 "?" 를 정답으로 채우시오.  
-주의! state를 input으로 줄거라면 반드시 str(state)로 해야하며, environmnet.py에는 빈칸없습니다.
+주의! state를 input으로 줄거라면 반드시 str(state)로 해야하며, environment.py에는 빈칸없습니다.
 
 
 

@@ -19,7 +19,7 @@ class SARSAgent:
         current_q = self.q_table[state][action]
         next_state_q = self.q_table[next_state][next_action]
         new_q = (current_q + self.learning_rate *
-                ("?"))
+                (reward + self.discount_factor * next_state_q - current_q))
         self.q_table[state][action] = new_q
 
     # epsilon-greedy policy에 따라서 action을 반환
@@ -54,20 +54,20 @@ if __name__ == "__main__":
         state = env.reset()
 
         # 현재 state에서 action 선택 (ε-greedy)
-        action = agent.get_action("?")
+        action = agent.get_action(str(state))
 
         while True:
             env.render()
 
-            "?", reward, done = env.step("?")
+            next_state, reward, done = env.step(action)
             
-            "?" = agent.get_action("?")
+            next_action = agent.get_action(str(next_state))
 
             # Q function를 update
-            agent.learn("?", "?", reward, "?", "?")
+            agent.learn(str(state), action, reward, str(next_state), next_action)
 
-            state = "?"
-            action = "?"
+            state = next_state
+            action = next_action
 
             # 모든 Q function를 화면에 표시
             env.print_value_all(agent.q_table)
