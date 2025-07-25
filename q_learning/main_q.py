@@ -16,7 +16,7 @@ class QLearningAgent:
     def learn(self, state, action, reward, next_state):
         q_1 = self.q_table[state][action]
         # Bellman optimality equation을 사용하여 Q function update
-        q_2 = reward + self.discount_factor * "?")
+        q_2 = reward + self.discount_factor * self.q_table[next_state]
         self.q_table[state][action] += self.learning_rate * (q_2 - q_1)
 
     # epsilon-greedy policy에 따라서 action을 반환
@@ -46,7 +46,7 @@ if __name__ == "__main__":
     env = Env()
     agent = QLearningAgent(actions=list(range(env.n_actions)))
 
-    for episode in range(1000):
+    for epiesode in range(1000):
         # initialize environment
         state = env.reset()
 
@@ -54,14 +54,14 @@ if __name__ == "__main__":
             env.render()
 
             # 현재 state에서 action 선택 (ε-greedy)
-            "?" = agent.get_action("?")
+            action = agent.get_action(str(state))
             
-            "?", reward, done = env.step("?")
+            next_state, reward, done = env.step(action)
 
             # Q function를 update
-            agent.learn("?", "?", reward, "?")
+            agent.learn(str(state), action, reward, next_state)
             
-            state = "?"
+            state = next_state
             
             # 모든 Q function를 화면에 표시
             env.print_value_all(agent.q_table)
