@@ -44,11 +44,11 @@ class Env(tk.Tk):
 
     def load_images(self):
         rectangle = PhotoImage(
-            Image.open("img/rectangle.png").resize((65, 65)))
+            Image.open("./img/rectangle.png").resize((65, 65)))
         triangle = PhotoImage(
-            Image.open("img/triangle.png").resize((65, 65)))
+            Image.open("./img/triangle.png").resize((65, 65)))
         circle = PhotoImage(
-            Image.open("img/circle.png").resize((65, 65)))
+            Image.open("./img/circle.png").resize((65, 65)))
 
         return rectangle, triangle, circle
 
@@ -127,7 +127,7 @@ class Env(tk.Tk):
             reward = -100
             done = True
         else:
-            reward = 0
+            reward = -1 # change reward
             done = False
 
         next_state = self.coords_to_state(next_state)
