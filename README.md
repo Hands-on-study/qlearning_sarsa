@@ -72,6 +72,8 @@ sarsa 폴더의 main_s를 debugging 해보면서 "?" 를 정답으로 채우시�
 SARSA과 Q-learning을 돌렸을 때, 보기엔 SARSA가 굉장히 멍청한거 같다. 이에 대한 해결법을 서술하시오.  
 (Hint: environment와 관련이 있다. Cliff Walking 에서는 왜 SARSA가 좋게 나왔을까?)
 
+A: Q-learning은 max를 이용하므로 하이-리스크, 하이-리턴을 목표로 한다. 하지만 현재 환경은 보상을 최대로 얻기 위해서 위험을 감수해야 하므로 지붕에 떨어질 위험이 높아서 Sarsa보다 더 낮게 나온다.
+
 
 <p align="center">
   <img src="img/cliff_walking.png" width="1200">
@@ -91,12 +93,14 @@ c. Q-learning은 항상 최적의 행동만을 사용하여 Q를 업데이트한
 d. SARSA는 환경 모델을 알고 있어야 작동한다.
 
 
+A: b, c
+
 ## Q5.
 SARSA와 Q-learning 2가지 방식 모두 epsilon-greedy를 사용한다.  
 그러나 SARSA는 그 값을 작게, Q-learning을 크게 사용한다.  
 그 이유를 서술하시오.
 
-
+A: Q-learning에서는 최적의 행동만을 사용하기 때문에 다양하게 탐색해서 이를 이용한다. 반면 SARSA는 on-policy 방법으로 분산이 epsilon이 커지면 분산이 커지기 때문에 이를 Q-learning보다는 작게 한다.
 
 ## git push
 ```bash
