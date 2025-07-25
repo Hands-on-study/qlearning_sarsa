@@ -100,7 +100,8 @@ SARSA와 Q-learning 2가지 방식 모두 epsilon-greedy를 사용한다.
 그러나 SARSA는 그 값을 작게, Q-learning을 크게 사용한다.  
 그 이유를 서술하시오.
 
-A: Q-learning에서는 최적의 행동만을 사용하기 때문에 다양하게 탐색해서 이를 이용한다. 반면 SARSA는 on-policy 방법으로 분산이 epsilon이 커지면 분산이 커지기 때문에 이를 Q-learning보다는 작게 한다.
+A: Q-learning에서는 off-policy로 학습하고 가장 좋은 행동 기준으로 값을 업데이트한다. 반면 SARSA는 on-policy 방법으로 epsilon이 커지면 학습되는 값이 실제로 자주 수행되지 않는 행동에 기반하며 분산이 커지기 때문에 epsilon을 Q-learning보다는 작게 한다.
+SARSA는 현재 정책을 그대로 학습하므로 탐험이 많을 경우 학습 안정성이 낮아지기 때문에 작은 ε이 권장되며, Q-learning은 최적 행동 기준으로 학습하므로 큰 ε로 더 넓은 탐험을 유도해도 수렴 가능성이 높다.
 
 ## git push
 ```bash
