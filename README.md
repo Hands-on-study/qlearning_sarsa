@@ -72,10 +72,11 @@ sarsa 폴더의 main_s를 debugging 해보면서 "?" 를 정답으로 채우시�
 SARSA과 Q-learning을 돌렸을 때, 보기엔 SARSA가 굉장히 멍청한거 같다. 이에 대한 해결법을 서술하시오.  
 (Hint: environment와 관련이 있다. Cliff Walking 에서는 왜 SARSA가 좋게 나왔을까?)
 
-
 <p align="center">
   <img src="img/cliff_walking.png" width="1200">
 </p>
+
+답. 이 환경에서는 단순히 상하좌우로 돌아다닐때의 페널티는 없으니까 on-policy 계열인 SARSA는 reward를 더 많이 받으려고 하기 보다는 init state에 멈춰있거나 빙글빙글 돌고 있는 현상이 나타난다. 이런 문제를 해결할 하기 위해서는 이동 한 번마다 reward에 -1 를 부여하면 해결된다.
 
 
 ## Q4.
@@ -90,12 +91,21 @@ c. Q-learning은 항상 최적의 행동만을 사용하여 Q를 업데이트한
 
 d. SARSA는 환경 모델을 알고 있어야 작동한다.
 
+답. b,c 
+
+a.  Q-learning은 ε-greedy로 행동을 선택하더라도, Q update는 항상 argmax Q에 기반하여 이뤄진다. 실제 action은 중요하지 않다.
+
+d. SARSA는 model-free 방식이다.
+
 
 ## Q5.
 SARSA와 Q-learning 2가지 방식 모두 epsilon-greedy를 사용한다.  
 그러나 SARSA는 그 값을 작게, Q-learning을 크게 사용한다.  
 그 이유를 서술하시오.
 
+답. SARSA는 on-policy이므로, ε-greedy policy에 따라 학습이 수행되므로 ε가 크면 학습 자체가 무작위성에 크게 영향을 받기에 ε를 작게 해야 안정적인 학습 가능
+
+Q-learning은 off-policy방식으로 behavior policy에서는 ε를 크게 줘서 탐험을 촉진하도록 학습한다. 학습에서는 어차피 greedy하게 학습하니까 영향 없다
 
 
 ## git push
