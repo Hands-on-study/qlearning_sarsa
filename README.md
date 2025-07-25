@@ -81,6 +81,7 @@ q-learning에서는 next state에 대한 action에 대해서 항상 max값을 Q�
 
 하지만 SARSA에서는 behavior policy와 target policy를 따로 두어서 Q^phi를 target으로 하여 학습이 진행되기 때문에 cliff에서 멀리 떨어진 safer path를 택하게 된다.
 
+가만히 있을때의 reward가 0이기 때문에 움직이지 않는 방식으로 학습하는 문제 <- -1 패널티 부여
 
 
 ## Q4.
@@ -95,14 +96,14 @@ c. Q-learning은 항상 최적의 행동만을 사용하여 Q를 업데이트한
 
 d. SARSA는 환경 모델을 알고 있어야 작동한다.
 
-a, c
+b, c
 
 ## Q5.
 SARSA와 Q-learning 2가지 방식 모두 epsilon-greedy를 사용한다.  
 그러나 SARSA는 그 값을 작게, Q-learning을 크게 사용한다.  
 그 이유를 서술하시오.
 
-maybe Q-learning 에서 탐색을 더 많이 해야함. 이유는 뭐지.
+maybe Q-learning 에서 탐색을 더 많이 해야함. 이유는 항상 max action을 택하는 방식으로 학습하기 때문에 더 많은 탐색을 필요로 한다.
 
 ## git push
 ```bash
