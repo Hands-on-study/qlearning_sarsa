@@ -24,7 +24,6 @@ terminal state는 초록색 triangle, 파란색 circle이다.
 agent가 초록색 triangle을 만나면 reward -100 을, 파란색 원을 만나면 reward 100을 얻으며, 그외엔 reward 0을 얻는다. 
 
 
-
 <p align="center">
   <img src="img/gridworld.png" width="350">
 </p>
@@ -72,6 +71,13 @@ sarsa 폴더의 main_s를 debugging 해보면서 "?" 를 정답으로 채우시�
 SARSA과 Q-learning을 돌렸을 때, 보기엔 SARSA가 굉장히 멍청한거 같다. 이에 대한 해결법을 서술하시오.  
 (Hint: environment와 관련이 있다. Cliff Walking 에서는 왜 SARSA가 좋게 나왔을까?)
 
+cliff walking에서 sarsa의 성능이 좋게 나온 이유는 q-learning에 대비해서 안정성을 추구하는 경향이 있기 때문에 cliff로부터 멀리 떨어져 경로를 찾게된다.
+반면 q-learning의 경우 reward를 max하겠다는 mission-critic한 성향이 강하기 때문에 cliff에 떨어지더라도 최단경로를 찾게된다.
+cliff와 현 env를 확인해보았을 때 한 번의 step을 할 때 reward가 [-1,0]이라는 차이점이 존재한다. 
+이 부분에서 cliff에서는 이동할 때 -1 reward를 받기 때문에 reward를 max로 하게끔 하려는 성향이 강해져 성능이 좋게 나오지만
+현재 env에서는 이동을 하여도 reward가 0이기 때문에 사실상 아무런 피드백이 없는 상황과 마찬가지 따라서 경로를 찾아가는 과정에서 다양한 피드백을 받지 못해서 성능이 떨어진다.
+
+정답 : 이동할 때 reward를 0 -> -1로 변경해주면 된다.
 
 <p align="center">
   <img src="img/cliff_walking.png" width="1200">
@@ -90,13 +96,17 @@ c. Q-learning은 항상 최적의 행동만을 사용하여 Q를 업데이트한
 
 d. SARSA는 환경 모델을 알고 있어야 작동한다.
 
+정답 : b, c, d
+
 
 ## Q5.
 SARSA와 Q-learning 2가지 방식 모두 epsilon-greedy를 사용한다.  
 그러나 SARSA는 그 값을 작게, Q-learning을 크게 사용한다.  
 그 이유를 서술하시오.
 
-
+sarsa는 선택가능한 행동들에 대한 다양한 학습을 원한다. -> 그래서 epsilon값을 작게해서 다른 행동들이 선택될 수 있는 충분한 가능성을 열어두는것이다. 
+반면 q-learning의 경우는 2개의 policy(target policy, behavior policy)를 사용한다 -> 다른 policy를 이용해서 자신의 policy를 학습
+따라서 다른 policy에서 나온 값을 충실히 따라야 할 의무가 있음으로(이미 best action이 정해져 있는데 다른 탐험을 굳이 할 필요는 없다.) epsilon값을 크게 사용하는 것이다.
 
 ## git push
 ```bash
